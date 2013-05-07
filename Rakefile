@@ -27,8 +27,13 @@ end
 # Mercury
 # -----------------------------------------------------------------------------
 namespace :mercury do
+
   require 'uglifier'
-  require 'sprockets-rails'
+  begin
+    require 'sprockets-rails'
+  rescue LoadError
+    require 'sprockets/rails'
+  end
 
   desc "Builds Mercury into the distribution ready package"
   task :build => ['build:dialogs', 'build:javascripts', 'build:stylesheets']
